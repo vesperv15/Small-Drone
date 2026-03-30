@@ -1,4 +1,4 @@
-# Small-Drone
+# Small-Drone (MİLO)
 A small assistant drone that responds to voice commands and tracks using a video tracking system.
 This project is a smart drone system that is compact in size, can follow the user using both Bluetooth (BLE) signals and computer vision, and can understand and respond to voice commands.
 -------------------------------------
