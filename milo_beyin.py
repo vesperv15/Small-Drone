@@ -14,15 +14,15 @@ class PID:
         current_time = time.time()
         dt = current_time - self.last_time
         if dt <= 0: dt= 1e-6
-        # 1. Proportional (P)
+        # Proportional
         p_term = self.kp * error
-        # 2. Integral (I) - Hataları topluyoruz
+        # Integral hata toplanması
         self.integral += error * dt
         i_term = self.ki * self.integral
-        # 3. Derivative (D) - Değişim hızına bakıyoruz (Sıçrama engelleyici)
+        # Derivative sıcramaları engellemek için degişim hızına bakıyoruz.
         derivative = (error - self.prev_error) / dt
         d_term = self.kd * derivative
-        # Toplam çıktı (Motorlara gidecek komut)
+        # Toplam çıktı motora gidecek komut
         output = p_term + i_term + d_term
         
         # Değerleri bir sonraki adım için sakla
