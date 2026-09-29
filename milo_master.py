@@ -30,10 +30,10 @@ class MiloMaster:
         try:
             async with BleakScanner(self.ble_callback) as scanner:
                 while self.is_running:
-                    # Z ekseni (Mesafe) hesabını burada yapıyoruz
+                    # mesafe hesabı buradan yapılır
                     error_z = self.target_rssi - self.current_rssi
                     self.milo_z = self.z_pid.calculate(error_z)
-                    await asyncio.sleep(0.1) # İşlemciyi yormayalım
+                    await asyncio.sleep(0.1) # İşlemciyi yormamak için
         except Exception as e:
             print(f"Bluetooth Hatası: {e}")
 
@@ -73,18 +73,18 @@ class MiloMaster:
     def ekran_arayuzu(self, frame, x, y, z, mx, my):
         cv2.drawMarker(frame, (mx, my), (255, 0, 0), cv2.MARKER_CROSS, 20, 2)
         cv2.putText(frame, f"MILO 3D STATUS", (10, 30), 1, 1.5, (255, 255, 255), 2)
-        cv2.putText(frame, f"X (Roll): {int(x)} | Y (Pitch): {int(y)}", (10, 70), 1, 1.2, (0, 255, 0), 2)
-        cv2.putText(frame, f"Z (Throttle): {int(z)} | RSSI: {self.current_rssi}", (10, 110), 1, 1.2, (0, 255, 0), 2)
+        cv2.putText(frame, f"X (Roll): {int(x)} / Y (Pitch): {int(y)}", (10, 70), 1, 1.2, (0, 255, 0), 2)
+        cv2.putText(frame, f"Z (Throttle): {int(z)} / RSSI: {self.current_rssi}", (10, 110), 1, 1.2, (0, 255, 0), 2)
 
     async def baslat(self):
-        # İki görevi aynı anda başlatıyoruz
+        # İki görevi aynı anda başlatalım
         await asyncio.gather(
             self.bluetooth_dongusu(),
             self.kamera_dongusu()
         )
 
 if __name__ == "__main__":
-    # ÖNEMLİ: Windows'ta Bluetooth sorunlarını aşmak için bu ayar kalmalı
+    # windows ta bluetooth sorunlarını asmak için burası laızm
     import sys
     if sys.platform == 'win32':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
