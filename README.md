@@ -2,7 +2,7 @@
 A small assistant drone that responds to voice commands and tracks using a video tracking system.
 This project is a smart drone system that is compact in size, can follow the user using both Bluetooth (BLE) signals and computer vision, and can understand and respond to voice commands.
 -------------------------------------
-🚀Key Features
+Key Features
 1. Hybrid Tracking System: Coarse positioning with Bluetooth RSSI data, precise visual lock-on with camera data.
 2. Voice Command Interface: Natural Language Processing (NLP) logic for recognizing commands such as "Follow me" and "Land".
 3. Autonomous Decision Mechanism: Smooth movement capability thanks to PID controller.
